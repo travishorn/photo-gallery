@@ -1,7 +1,7 @@
 <template>
   <div class="lightbox" @click.self="closeLightbox">
     <img :src="photoUrl(photo.filename)">
-    <div class="lightbox-info-right">
+    <div class="lightbox-info">
       <div class="lightbox-info-inner">
         <p v-if="photo.title">{{ photo.title }}</p>
         <p v-if="photo.location">{{ photo.location }}</p>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-/* eslint-disable import/no-dynamic-require, global-require */
 import photos from '@/photos.json';
 
 export default {
@@ -29,7 +28,9 @@ export default {
   },
   computed: {
     photo() {
-      return this.photos.find(photo => photo.id === Number(this.$route.params.id));
+      return this.photos.find((photo) => {
+        return photo.id === Number(this.$route.params.id);
+      });
     },
   },
   methods: {
@@ -62,8 +63,8 @@ export default {
     grid-column-start: 2;
   }
 
-  .lightbox-info-right {
-    margin: auto 0;
+  .lightbox-info {
+    margin: auto 2rem auto 0;
   }
 
   .lightbox-info-inner {
